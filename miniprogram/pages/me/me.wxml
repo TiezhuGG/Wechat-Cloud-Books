@@ -1,0 +1,18 @@
+<view class="user-container">
+  <view wx:if="{{userInfo.openid}}">
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view>{{userInfo.nickName}}</view>
+  </view>
+  <view wx:else>
+    <image class="avatar" src="http://image.shengxinjing.cn/rate/unlogin.png"></image>
+    <view>
+      <!-- 需要使用button来授权登录 -->
+      <button bindgetuserinfo="getMyUserInfo" open-type="getUserInfo" type="primary">登录</button>
+    </view>
+  </view>
+
+  <view>
+    <button wx:if="{{userInfo.openid}}" type="warn" bindtap="scanCode">添加图书</button>
+    <button type="warn" opentype="contact">客服</button>
+  </view>
+</view>

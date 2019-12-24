@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="book-info" wx:for="{{books}}">
+    <image class="book-cover" src="{{item.image}}"></image>
+    <view>{{item.title}}</view>
+  </view>
+</view>
