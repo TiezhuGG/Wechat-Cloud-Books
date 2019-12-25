@@ -4,7 +4,7 @@
 1. 微信登录
 ```
 <!-- 需要使用button来授权登录 -->
-<button bindgetuserinfo="onGetUserInfo" open-type="getUserInfo" type="primary" size="mini">登录</button>
+<button bindgetuserinfo="getMyUserInfo" open-type="getUserInfo" type="primary">登录</button>
 ```
 2. 调用login云函数获取用户openid，并写入本地缓存进行持久化存储
 3. 扫描图书isbn号，调用getBookInfo云函数
