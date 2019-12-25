@@ -9,13 +9,18 @@ Page({
   },
   // 监听上拉触底事件
   onReachBottom() {
-    console.log("bottom")
+    // console.log("bottom")
     // 触底加载下一页
     this.setData({
       page: this.data.page + 1
     }, () => {
       this.getList()
     })
+  },
+  // 监听下拉刷新事件
+  onPullDownRefresh(){
+    // console.log('下拉刷新，重新渲染')
+    this.getList(true)
   },
   getList(init) {
     wx.showLoading()
@@ -25,9 +30,7 @@ Page({
         page: 0
       })
     }
-    // 第一页 0-3
-    // 第二页 3-6
-    // 第三页 6-9
+    // 一页3本图书
     const PAGE = 3
     const offset = this.data.page * PAGE
 
@@ -52,39 +55,4 @@ Page({
     this.getList(true)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })

@@ -10,13 +10,10 @@ cloud.init()
 async function crawlBookUrl(isbn) {
   const url = 'https://search.douban.com/book/subject_search?search_text=' + isbn
   let searchInfo = await axios.get(url)
-  // console.log(searchInfo.data)
-  // 获取window.__DATA__ = 后面的数据，需要使用doubanbook这个包解密 
+  // 数据解密 
   let reg = /window\.__DATA__ = "(.*)"/
   if (reg.test(searchInfo.data)) {
-    // console.log(RegExp.$1)
     let searchData = doubanbook(RegExp.$1)[0]
-    // console.log(searchData)
     return searchData
   }
 }
@@ -62,20 +59,16 @@ async function getBookDetailInfo(isbn) {
 // 本地调试的入口
 // console.log(getBookDetailInfo('9787115352460'))
 
-// 所谓的云函数 就是一个node的项目(函数)
 // 云函数入口函数
 exports.main = async(event, context) => {
-  // 云函数的逻辑
-  const {
-    isbn
-  } = event
-  return getBookDetailInfo(isbn)
-  // if (isbn) {
-  //   return getBookDetailInfo(isbn)
-  // } else {
-  //   return {
-  //     code: -1,
-  //     msg: '请扫描正确的图书'
-  //   }
-  // }
+  const {isbn} = event
+  // return getBookDetailInfo(isbn)
+  if (isbn) {
+    return getBookDetailInfo(isbn)
+  } else {
+    return {
+      code: -1,
+      msg: '请扫描正确的图书'
+    }
+  }
 }
