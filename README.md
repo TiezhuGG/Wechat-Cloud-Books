@@ -7,11 +7,12 @@
 4. getBookInfo内编写爬虫从豆瓣网站获取图书信息
 5. 微信小程序云开发可以直接在前端操作数据库
 ```
-      db.collection('bookInfos').orderBy('create_time', 'desc').get().then(res => {
-    	this.setData({
+db.collection('bookInfos').orderBy('create_time', 'desc')
+.get().then(res => {
+      this.setData({
     		books: res.data
     	})
-  	})
+ })
  ```
  6. 滚动加载和下拉刷新
  
